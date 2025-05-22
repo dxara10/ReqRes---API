@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.7 on linux)" generated="2025-05-22T19:22:29.638535" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Users" source="/home/cortes/Documents/Compass Estágio/ReqRes - API/tests/test_users.robot">
+<test id="s1-t1" name="Listar Usuários com Pagina Valida" line="6">
+<kw name="Criar Sessão" owner="users_keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-05-22T19:22:29.751671" level="INFO">Creating Session using : alias=api, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${pageBase}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-05-22T19:22:29.751450" elapsed="0.000503"/>
+</kw>
+<doc>Cria uma sessão para requisições na API de usuários</doc>
+<status status="PASS" start="2025-05-22T19:22:29.749672" elapsed="0.002391"/>
+</kw>
+<kw name="Enviar Requisição GET de Listar Usuários" owner="users_keywords">
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-05-22T19:22:29.851212" level="INFO">GET Request : url=https://reqres.in/api/users?page=1 
+ path_url=/api/users?page=1 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-05-22T19:22:29.851407" level="INFO">GET Response : url=https://reqres.in/api/users?page=1 
+ status=200, reason=OK 
+ headers={'Date': 'Thu, 22 May 2025 22:22:29 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cf-Ray': '943fb66c6e8500c5-GRU', 'Server': 'cloudflare', 'Content-Encoding': 'gzip', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747945709&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=7KPhboOMj8tPnlHoaIQ21HcQHQHDX9xSdtRStktIEoc%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747945709&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=7KPhboOMj8tPnlHoaIQ21HcQHQHDX9xSdtRStktIEoc%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '82', 'Ratelimit-Reset': '60', 'Etag': 'W/"41e-bY3U72nulxuwNd/TmihMEHjLmek"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'Cf-Cache-Status': 'HIT', 'Age': '6839', 'Vary': 'Accept-Encoding', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=15647&amp;min_rtt=9072&amp;rtt_var=11799&amp;sent=6&amp;recv=9&amp;lost=0&amp;retrans=1&amp;sent_bytes=2976&amp;recv_bytes=775&amp;delivery_rate=139275&amp;cwnd=252&amp;unsent_bytes=0&amp;cid=da5b41b4767b1a0f&amp;ts=55&amp;x=0"'} 
+ body={"page":1,"per_page":6,"total":12,"total_pages":2,"data":[{"id":1,"email":"george.bluth@reqres.in","first_name":"George","last_name":"Bluth","avatar":"https://reqres.in/img/faces/1-image.jpg"},{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},{"id":3,"email":"emma.wong@reqres.in","first_name":"Emma","last_name":"Wong","avatar":"https://reqres.in/img/faces/3-image.jpg"},{"id":4,"email":"eve.holt@reqres.in","first_name":"Eve","last_name":"Holt","avatar":"https://reqres.in/img/faces/4-image.jpg"},{"id":5,"email":"charles.morris@reqres.in","first_name":"Charles","last_name":"Morris","avatar":"https://reqres.in/img/faces/5-image.jpg"},{"id":6,"email":"tracey.ramos@reqres.in","first_name":"Tracey","last_name":"Ramos","avatar":"https://reqres.in/img/faces/6-image.jpg"}],"support":{"url":"https://contentcaddy.io?utm_source=reqres&amp;utm_medium=json&amp;utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}} 
+ </msg>
+<msg time="2025-05-22T19:22:29.851513" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-05-22T19:22:29.851696" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>url=${pageBase}${usersEndpoint}?page=${page}</arg>
+<arg>expected_status=ANY</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-05-22T19:22:29.752732" elapsed="0.099022"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-05-22T19:22:29.851866" elapsed="0.000066"/>
+</return>
+<msg time="2025-05-22T19:22:29.852119" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>1</arg>
+<status status="PASS" start="2025-05-22T19:22:29.752338" elapsed="0.099814"/>
+</kw>
+<kw name="Validar status_code" owner="users_keywords">
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-05-22T19:22:29.853336" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>${expected_status}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-05-22T19:22:29.852774" elapsed="0.000649"/>
+</kw>
+<arg>${response}</arg>
+<arg>200</arg>
+<status status="PASS" start="2025-05-22T19:22:29.852398" elapsed="0.001100"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-22T19:22:29.854211" level="INFO">{'page': 1, 'per_page': 6, 'total': 12, 'total_pages': 2, 'data': [{'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-image.jpg'}, {'id': 2, 'email': 'janet.weaver@reqres.in', 'first_name': 'Janet', 'last_name': 'Weaver', 'avatar': 'https://reqres.in/img/faces/2-image.jpg'}, {'id': 3, 'email': 'emma.wong@reqres.in', 'first_name': 'Emma', 'last_name': 'Wong', 'avatar': 'https://reqres.in/img/faces/3-image.jpg'}, {'id': 4, 'email': 'eve.holt@reqres.in', 'first_name': 'Eve', 'last_name': 'Holt', 'avatar': 'https://reqres.in/img/faces/4-image.jpg'}, {'id': 5, 'email': 'charles.morris@reqres.in', 'first_name': 'Charles', 'last_name': 'Morris', 'avatar': 'https://reqres.in/img/faces/5-image.jpg'}, {'id': 6, 'email': 'tracey.ramos@reqres.in', 'first_name': 'Tracey', 'last_name': 'Ramos', 'avatar': 'https://reqres.in/img/faces/6-image.jpg'}], 'support': {'url': 'https://contentcaddy.io?utm_source=reqres&amp;utm_medium=json&amp;utm_campaign=referral', 'text': 'Tired of writing endless social media content? Let Content Caddy generate it for you.'}}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-22T19:22:29.853674" elapsed="0.000608"/>
+</kw>
+<status status="PASS" start="2025-05-22T19:22:29.748905" elapsed="0.105559"/>
+</test>
+<test id="s1-t2" name="Listar Usuários com Página Invalida" line="12">
+<kw name="Criar Sessão" owner="users_keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-05-22T19:22:29.855816" level="INFO">Creating Session using : alias=api, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${pageBase}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-05-22T19:22:29.855465" elapsed="0.000529"/>
+</kw>
+<doc>Cria uma sessão para requisições na API de usuários</doc>
+<status status="PASS" start="2025-05-22T19:22:29.855198" elapsed="0.000878"/>
+</kw>
+<kw name="Enviar Requisição GET de Listar Usuários" owner="users_keywords">
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-05-22T19:22:30.321161" level="INFO">GET Request : url=https://reqres.in/api/users?page=-1 
+ path_url=/api/users?page=-1 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-05-22T19:22:30.321499" level="INFO">GET Response : url=https://reqres.in/api/users?page=-1 
+ status=401, reason=Unauthorized 
+ headers={'Date': 'Thu, 22 May 2025 22:22:30 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Vary': 'Accept-Encoding', 'Cf-Ray': '943fb66d09f2a176-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747952550&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=%2BRVTztLbs45jgYttOGLep36iKV9ZCCEALKJOb7O8OII%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747952550&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=%2BRVTztLbs45jgYttOGLep36iKV9ZCCEALKJOb7O8OII%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '99', 'Ratelimit-Reset': '60', 'Etag': 'W/"48-+Z5A4MsbyryWjwqUCtZ7548heDc"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'BYPASS', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=12312&amp;min_rtt=9178&amp;rtt_var=7024&amp;sent=5&amp;recv=8&amp;lost=0&amp;retrans=0&amp;sent_bytes=2837&amp;recv_bytes=776&amp;delivery_rate=195352&amp;cwnd=252&amp;unsent_bytes=0&amp;cid=ff61c3881ea89f83&amp;ts=419&amp;x=0"'} 
+ body={"error":"Missing API key.","how_to_get_one":"https://reqres.in/signup"} 
+ </msg>
+<msg time="2025-05-22T19:22:30.321689" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-05-22T19:22:30.321993" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>url=${pageBase}${usersEndpoint}?page=${page}</arg>
+<arg>expected_status=ANY</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-05-22T19:22:29.856555" elapsed="0.465518"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-05-22T19:22:30.322270" elapsed="0.000119"/>
+</return>
+<msg time="2025-05-22T19:22:30.322794" level="INFO">${response} = &lt;Response [401]&gt;</msg>
+<var>${response}</var>
+<arg>-1</arg>
+<status status="PASS" start="2025-05-22T19:22:29.856274" elapsed="0.466592"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-22T19:22:30.324286" level="INFO">401</msg>
+<arg>${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-22T19:22:30.323232" elapsed="0.001180"/>
+</kw>
+<kw name="Validar status_code" owner="users_keywords">
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-05-22T19:22:30.326604" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>${expected_status}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-05-22T19:22:30.325541" elapsed="0.001246"/>
+</kw>
+<arg>${response}</arg>
+<arg>401</arg>
+<status status="PASS" start="2025-05-22T19:22:30.324817" elapsed="0.002133"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-22T19:22:30.328312" level="INFO">{'error': 'Missing API key.', 'how_to_get_one': 'https://reqres.in/signup'}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-22T19:22:30.327265" elapsed="0.001175"/>
+</kw>
+<status status="PASS" start="2025-05-22T19:22:29.854800" elapsed="0.474012"/>
+</test>
+<doc>Keywords for login page</doc>
+<status status="PASS" start="2025-05-22T19:22:29.639915" elapsed="0.689834"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Test Users" id="s1" pass="2" fail="0" skip="0">Test Users</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-05-22T19:22:29.670756" level="WARN">Error in file '/home/cortes/Documents/Compass Estágio/ReqRes - API/keywords/users_keywords.robot' on line 19: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+</errors>
+</robot>
