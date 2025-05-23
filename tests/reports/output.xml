@@ -1,556 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.12.7 on linux)" generated="2025-05-22T22:19:57.239882" rpa="false" schemaversion="5">
-<suite id="s1" name="Test Users" source="/home/cortes/Documents/Compass Estágio/ReqRes - API/tests/test_users.robot">
-<kw name="Criar Sessão" owner="users_keywords" type="SETUP">
+<robot generator="Robot 7.2.2 (Python 3.12.7 on linux)" generated="2025-05-23T00:46:35.888008" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Logout" source="/home/cortes/Documents/Compass Estágio/ReqRes - API/tests/test_logout.robot">
+<test id="s1-t1" name="Logout Com Sucesso" line="6">
+<kw name="Logout With Api Key" owner="logout_keywords">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-05-23T00:46:36.008983" level="INFO">${headers} = {'x-api-key': 'reqres-free-v1'}</msg>
+<var>${headers}</var>
+<arg>x-api-key=${API_KEY}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-05-23T00:46:36.008522" elapsed="0.000514"/>
+</kw>
 <kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:19:57.351601" level="INFO">Creating Session using : alias=api, url=https://reqres.in, headers={'Content-Type': 'application/json'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>api</arg>
+<msg time="2025-05-23T00:46:36.009485" level="INFO">Creating Session using : alias=logout, url=https://reqres.in, headers={'x-api-key': 'reqres-free-v1'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>logout</arg>
 <arg>${BASE_URL}</arg>
 <arg>headers=${headers}</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-05-22T22:19:57.351185" elapsed="0.000672"/>
+<status status="PASS" start="2025-05-23T00:46:36.009197" elapsed="0.000532"/>
 </kw>
-<doc>Cria uma sessão para requisições à API ReqRes</doc>
-<status status="PASS" start="2025-05-22T22:19:57.350551" elapsed="0.001426"/>
-</kw>
-<test id="s1-t1" name="Listar Usuários Com Página Válida" line="9">
-<kw name="Enviar Requisição GET de Listar Usuários" owner="users_keywords">
-<kw name="GET On Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:19:57.433870" level="INFO">GET Request : url=https://reqres.in/api/users?page=1 
- path_url=/api/users?page=1 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+<kw name="Post Request" owner="RequestsLibrary">
+<msg time="2025-05-23T00:46:36.009909" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg time="2025-05-23T00:46:36.435179" level="INFO">POST Request : url=https://reqres.in/api/logout 
+ path_url=/api/logout 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'x-api-key': 'reqres-free-v1', 'Content-Length': '0'} 
  body=None 
  </msg>
-<msg time="2025-05-22T22:19:57.434044" level="INFO">GET Response : url=https://reqres.in/api/users?page=1 
+<msg time="2025-05-23T00:46:36.435507" level="INFO">POST Response : url=https://reqres.in/api/logout 
  status=200, reason=OK 
- headers={'Date': 'Fri, 23 May 2025 01:19:57 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cf-Ray': '9440ba5fcb991595-GRU', 'Server': 'cloudflare', 'Content-Encoding': 'gzip', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747957771&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=2I6lNueJq%2BOpxyeZDkmDUXsYIfF3DojVZa63rJJSoAs%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747957771&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=2I6lNueJq%2BOpxyeZDkmDUXsYIfF3DojVZa63rJJSoAs%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '98', 'Ratelimit-Reset': '60', 'Etag': 'W/"41e-bY3U72nulxuwNd/TmihMEHjLmek"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'Cf-Cache-Status': 'HIT', 'Age': '5426', 'Vary': 'Accept-Encoding', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=11010&amp;min_rtt=10134&amp;rtt_var=2917&amp;sent=5&amp;recv=8&amp;lost=0&amp;retrans=0&amp;sent_bytes=2836&amp;recv_bytes=807&amp;delivery_rate=388248&amp;cwnd=252&amp;unsent_bytes=0&amp;cid=b6ea47f365babc42&amp;ts=35&amp;x=0"'} 
- body={"page":1,"per_page":6,"total":12,"total_pages":2,"data":[{"id":1,"email":"george.bluth@reqres.in","first_name":"George","last_name":"Bluth","avatar":"https://reqres.in/img/faces/1-image.jpg"},{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},{"id":3,"email":"emma.wong@reqres.in","first_name":"Emma","last_name":"Wong","avatar":"https://reqres.in/img/faces/3-image.jpg"},{"id":4,"email":"eve.holt@reqres.in","first_name":"Eve","last_name":"Holt","avatar":"https://reqres.in/img/faces/4-image.jpg"},{"id":5,"email":"charles.morris@reqres.in","first_name":"Charles","last_name":"Morris","avatar":"https://reqres.in/img/faces/5-image.jpg"},{"id":6,"email":"tracey.ramos@reqres.in","first_name":"Tracey","last_name":"Ramos","avatar":"https://reqres.in/img/faces/6-image.jpg"}],"support":{"url":"https://contentcaddy.io?utm_source=reqres&amp;utm_medium=json&amp;utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}} 
+ headers={'Date': 'Fri, 23 May 2025 03:46:36 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Cf-Ray': '9441912f5a50f1ea-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747971996&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=PBwXu%2BuM7zZquvZAIsQTHerKVzWoWcKj34641zVyzew%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747971996&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=PBwXu%2BuM7zZquvZAIsQTHerKVzWoWcKj34641zVyzew%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '98', 'Ratelimit-Reset': '60', 'Etag': 'W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'DYNAMIC', 'Content-Encoding': 'gzip', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=11241&amp;min_rtt=10414&amp;rtt_var=3670&amp;sent=5&amp;recv=7&amp;lost=0&amp;retrans=0&amp;sent_bytes=2836&amp;recv_bytes=816&amp;delivery_rate=388099&amp;cwnd=252&amp;unsent_bytes=0&amp;cid=e8d7e783ccfd0948&amp;ts=386&amp;x=0"'} 
+ body={} 
  </msg>
-<msg time="2025-05-22T22:19:57.434150" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+<msg time="2025-05-23T00:46:36.435595" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
   warnings.warn(</msg>
-<msg time="2025-05-22T22:19:57.434343" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2025-05-23T00:46:36.435805" level="INFO">${response} = &lt;Response [200]&gt;</msg>
 <var>${response}</var>
-<arg>api</arg>
-<arg>url=${USERS_ENDPOINT}?page=${page}</arg>
-<doc>Sends a GET request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-05-22T22:19:57.352899" elapsed="0.081492"/>
+<arg>logout</arg>
+<arg>${LOGOUT_ENDPOINT}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<status status="PASS" start="2025-05-23T00:46:36.009874" elapsed="0.425989"/>
 </kw>
 <return>
 <value>${response}</value>
-<status status="PASS" start="2025-05-22T22:19:57.434482" elapsed="0.000075"/>
+<status status="PASS" start="2025-05-23T00:46:36.435950" elapsed="0.000078"/>
 </return>
-<msg time="2025-05-22T22:19:57.434792" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2025-05-23T00:46:36.436246" level="INFO">${response} = &lt;Response [200]&gt;</msg>
 <var>${response}</var>
-<arg>1</arg>
-<doc>Envia uma requisição GET para listar usuários na página especificada</doc>
-<status status="PASS" start="2025-05-22T22:19:57.352577" elapsed="0.082249"/>
+<status status="PASS" start="2025-05-23T00:46:36.007812" elapsed="0.428468"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-22T22:19:57.435728" level="INFO">{'page': 1, 'per_page': 6, 'total': 12, 'total_pages': 2, 'data': [{'id': 1, 'email': 'george.bluth@reqres.in', 'first_name': 'George', 'last_name': 'Bluth', 'avatar': 'https://reqres.in/img/faces/1-image.jpg'}, {'id': 2, 'email': 'janet.weaver@reqres.in', 'first_name': 'Janet', 'last_name': 'Weaver', 'avatar': 'https://reqres.in/img/faces/2-image.jpg'}, {'id': 3, 'email': 'emma.wong@reqres.in', 'first_name': 'Emma', 'last_name': 'Wong', 'avatar': 'https://reqres.in/img/faces/3-image.jpg'}, {'id': 4, 'email': 'eve.holt@reqres.in', 'first_name': 'Eve', 'last_name': 'Holt', 'avatar': 'https://reqres.in/img/faces/4-image.jpg'}, {'id': 5, 'email': 'charles.morris@reqres.in', 'first_name': 'Charles', 'last_name': 'Morris', 'avatar': 'https://reqres.in/img/faces/5-image.jpg'}, {'id': 6, 'email': 'tracey.ramos@reqres.in', 'first_name': 'Tracey', 'last_name': 'Ramos', 'avatar': 'https://reqres.in/img/faces/6-image.jpg'}], 'support': {'url': 'https://contentcaddy.io?utm_source=reqres&amp;utm_medium=json&amp;utm_campaign=referral', 'text': 'Tired of writing endless social media content? Let Content Caddy generate it for you.'}}</msg>
-<arg>${response.json()}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-22T22:19:57.435072" elapsed="0.000729"/>
-</kw>
-<kw name="Validar Status Code" owner="users_keywords">
-<kw name="Should Be Equal As Numbers" owner="BuiltIn">
-<msg time="2025-05-22T22:19:57.436912" level="INFO">Argument types are:
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-05-23T00:46:36.437112" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
 <arg>${response.status_code}</arg>
-<arg>${expected_status}</arg>
-<doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<status status="PASS" start="2025-05-22T22:19:57.436410" elapsed="0.000595"/>
-</kw>
-<arg>${response}</arg>
 <arg>200</arg>
-<status status="PASS" start="2025-05-22T22:19:57.436043" elapsed="0.001042"/>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-05-23T00:46:36.436518" elapsed="0.000684"/>
 </kw>
-<doc>Testa a listagem de usuários com uma página válida</doc>
-<status status="PASS" start="2025-05-22T22:19:57.352061" elapsed="0.085193"/>
+<status status="PASS" start="2025-05-23T00:46:36.006894" elapsed="0.430486"/>
 </test>
-<test id="s1-t2" name="Listar Usuários Com Página Inválida" line="15">
-<kw name="Enviar Requisição GET de Listar Usuários" owner="users_keywords">
-<kw name="GET On Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:19:57.466975" level="INFO">GET Request : url=https://reqres.in/api/users?page=999 
- path_url=/api/users?page=999 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+<test id="s1-t2" name="Logout Sem Api Key" line="10">
+<kw name="Logout Without Api Key" owner="logout_keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-05-23T00:46:36.438527" level="INFO">Creating Session using : alias=logout_no_key, url=https://reqres.in, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>logout_no_key</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-05-23T00:46:36.438370" elapsed="0.000356"/>
+</kw>
+<kw name="Post Request" owner="RequestsLibrary">
+<msg time="2025-05-23T00:46:36.438897" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg time="2025-05-23T00:46:36.876434" level="INFO">POST Request : url=https://reqres.in/api/logout 
+ path_url=/api/logout 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
  body=None 
  </msg>
-<msg time="2025-05-22T22:19:57.467130" level="INFO">GET Response : url=https://reqres.in/api/users?page=999 
- status=200, reason=OK 
- headers={'Date': 'Fri, 23 May 2025 01:19:57 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cf-Ray': '9440ba600c601595-GRU', 'Server': 'cloudflare', 'Content-Encoding': 'gzip', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747957771&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=2I6lNueJq%2BOpxyeZDkmDUXsYIfF3DojVZa63rJJSoAs%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747957771&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=2I6lNueJq%2BOpxyeZDkmDUXsYIfF3DojVZa63rJJSoAs%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '96', 'Ratelimit-Reset': '60', 'Etag': 'W/"101-wwEhf+ZHcPAL+KvYf2ExE5h9wWE"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'Cf-Cache-Status': 'HIT', 'Age': '5426', 'Vary': 'Accept-Encoding', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=10922&amp;min_rtt=9445&amp;rtt_var=2151&amp;sent=9&amp;recv=11&amp;lost=0&amp;retrans=0&amp;sent_bytes=5051&amp;recv_bytes=1019&amp;delivery_rate=461091&amp;cwnd=256&amp;unsent_bytes=0&amp;cid=b6ea47f365babc42&amp;ts=67&amp;x=0"'} 
- body={"page":999,"per_page":6,"total":12,"total_pages":2,"data":[],"support":{"url":"https://contentcaddy.io?utm_source=reqres&amp;utm_medium=json&amp;utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."}} 
+<msg time="2025-05-23T00:46:36.876560" level="INFO">POST Response : url=https://reqres.in/api/logout 
+ status=401, reason=Unauthorized 
+ headers={'Date': 'Fri, 23 May 2025 03:46:36 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Cf-Ray': '9441913219f6f171-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747971996&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=PBwXu%2BuM7zZquvZAIsQTHerKVzWoWcKj34641zVyzew%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747971996&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=PBwXu%2BuM7zZquvZAIsQTHerKVzWoWcKj34641zVyzew%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '97', 'Ratelimit-Reset': '60', 'Etag': 'W/"48-+Z5A4MsbyryWjwqUCtZ7548heDc"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'DYNAMIC', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=11140&amp;min_rtt=10863&amp;rtt_var=3302&amp;sent=5&amp;recv=7&amp;lost=0&amp;retrans=0&amp;sent_bytes=2836&amp;recv_bytes=789&amp;delivery_rate=372101&amp;cwnd=252&amp;unsent_bytes=0&amp;cid=2df21a178b6ac4d0&amp;ts=394&amp;x=0"'} 
+ body={"error":"Missing API key.","how_to_get_one":"https://reqres.in/signup"} 
  </msg>
-<msg time="2025-05-22T22:19:57.467367" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+<msg time="2025-05-23T00:46:36.876654" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
   warnings.warn(</msg>
-<msg time="2025-05-22T22:19:57.467639" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2025-05-23T00:46:36.876858" level="INFO">${response} = &lt;Response [401]&gt;</msg>
 <var>${response}</var>
-<arg>api</arg>
-<arg>url=${USERS_ENDPOINT}?page=${page}</arg>
-<doc>Sends a GET request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-05-22T22:19:57.438314" elapsed="0.029397"/>
+<arg>logout_no_key</arg>
+<arg>${LOGOUT_ENDPOINT}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<status status="PASS" start="2025-05-23T00:46:36.438861" elapsed="0.438037"/>
 </kw>
 <return>
 <value>${response}</value>
-<status status="PASS" start="2025-05-22T22:19:57.467890" elapsed="0.000079"/>
+<status status="PASS" start="2025-05-23T00:46:36.876994" elapsed="0.000073"/>
 </return>
-<msg time="2025-05-22T22:19:57.468198" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2025-05-23T00:46:36.877417" level="INFO">${response} = &lt;Response [401]&gt;</msg>
 <var>${response}</var>
-<arg>999</arg>
-<doc>Envia uma requisição GET para listar usuários na página especificada</doc>
-<status status="PASS" start="2025-05-22T22:19:57.438028" elapsed="0.030212"/>
+<status status="PASS" start="2025-05-23T00:46:36.438093" elapsed="0.439393"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-22T22:19:57.469429" level="INFO">{'page': 999, 'per_page': 6, 'total': 12, 'total_pages': 2, 'data': [], 'support': {'url': 'https://contentcaddy.io?utm_source=reqres&amp;utm_medium=json&amp;utm_campaign=referral', 'text': 'Tired of writing endless social media content? Let Content Caddy generate it for you.'}}</msg>
-<arg>${response.json()}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-22T22:19:57.468540" elapsed="0.001038"/>
-</kw>
-<kw name="Validar Status Code" owner="users_keywords">
-<kw name="Should Be Equal As Numbers" owner="BuiltIn">
-<msg time="2025-05-22T22:19:57.471118" level="INFO">Argument types are:
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2025-05-23T00:46:36.878347" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
 <arg>${response.status_code}</arg>
-<arg>${expected_status}</arg>
-<doc>Fails if objects are unequal after converting them to real numbers.</doc>
-<status status="PASS" start="2025-05-22T22:19:57.470403" elapsed="0.000819"/>
-</kw>
-<arg>${response}</arg>
-<arg>200</arg>
-<status status="PASS" start="2025-05-22T22:19:57.469943" elapsed="0.001381"/>
-</kw>
-<doc>Testa a listagem de usuários com uma página inexistente</doc>
-<status status="PASS" start="2025-05-22T22:19:57.437528" elapsed="0.034059"/>
-</test>
-<test id="s1-t3" name="Buscar Usuário por ID Válido" line="22">
-<kw name="Enviar Requisição GET de Buscar Usuário por ID" owner="users_keywords">
-<kw name="GET On Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:19:57.860306" level="INFO">GET Request : url=https://reqres.in/api/users/2 
- path_url=/api/users/2 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
- body=None 
- </msg>
-<msg time="2025-05-22T22:19:57.860487" level="INFO">GET Response : url=https://reqres.in/api/users/2 
- status=401, reason=Unauthorized 
- headers={'Date': 'Fri, 23 May 2025 01:19:57 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Vary': 'Accept-Encoding', 'Cf-Ray': '9440ba603d311595-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747963197&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=Iy3YJwtlDIn5QAydhzGRHisrxKq5qkaJxFCPsmv4EY8%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747963197&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=Iy3YJwtlDIn5QAydhzGRHisrxKq5qkaJxFCPsmv4EY8%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '99', 'Ratelimit-Reset': '60', 'Etag': 'W/"48-+Z5A4MsbyryWjwqUCtZ7548heDc"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'BYPASS', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=12098&amp;min_rtt=9445&amp;rtt_var=3471&amp;sent=13&amp;recv=13&amp;lost=0&amp;retrans=0&amp;sent_bytes=6581&amp;recv_bytes=1224&amp;delivery_rate=461091&amp;cwnd=256&amp;unsent_bytes=0&amp;cid=b6ea47f365babc42&amp;ts=463&amp;x=0"'} 
- body={"error":"Missing API key.","how_to_get_one":"https://reqres.in/signup"} 
- </msg>
-<msg time="2025-05-22T22:19:57.860646" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(</msg>
-<msg time="2025-05-22T22:19:57.860921" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</msg>
-<var>${response}</var>
-<arg>api</arg>
-<arg>url=${USERS_ENDPOINT}/${user_id}</arg>
-<doc>Sends a GET request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-05-22T22:19:57.473187" elapsed="0.389670">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</kw>
-<return>
-<value>${response}</value>
-<status status="NOT RUN" start="2025-05-22T22:19:57.862992" elapsed="0.000040"/>
-</return>
-<var>${response}</var>
-<arg>2</arg>
-<doc>Envia uma requisição GET para buscar um usuário pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:57.472808" elapsed="0.390411">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${response.json()}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-05-22T22:19:57.863540" elapsed="0.000057"/>
-</kw>
-<kw name="Validar Status Code" owner="users_keywords">
-<arg>${response}</arg>
-<arg>200</arg>
-<status status="NOT RUN" start="2025-05-22T22:19:57.863913" elapsed="0.000057"/>
-</kw>
-<doc>Testa a busca de um usuário existente pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:57.472081" elapsed="0.392211">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</test>
-<test id="s1-t4" name="Buscar Usuário por ID Inválido" line="28">
-<kw name="Enviar Requisição GET de Buscar Usuário por ID" owner="users_keywords">
-<kw name="GET On Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:19:58.258459" level="INFO">GET Request : url=https://reqres.in/api/users/23 
- path_url=/api/users/23 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
- body=None 
- </msg>
-<msg time="2025-05-22T22:19:58.258648" level="INFO">GET Response : url=https://reqres.in/api/users/23 
- status=401, reason=Unauthorized 
- headers={'Date': 'Fri, 23 May 2025 01:19:58 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Vary': 'Accept-Encoding', 'Cf-Ray': '9440ba62bd851595-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747963198&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=X4Ha45xQ5jwwItoiOlfc6FftIA5NvxXtWZEwyIMn2WI%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747963198&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=X4Ha45xQ5jwwItoiOlfc6FftIA5NvxXtWZEwyIMn2WI%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '98', 'Ratelimit-Reset': '60', 'Etag': 'W/"48-+Z5A4MsbyryWjwqUCtZ7548heDc"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'BYPASS', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=13528&amp;min_rtt=9445&amp;rtt_var=5463&amp;sent=15&amp;recv=14&amp;lost=0&amp;retrans=0&amp;sent_bytes=7857&amp;recv_bytes=1430&amp;delivery_rate=461091&amp;cwnd=256&amp;unsent_bytes=0&amp;cid=b6ea47f365babc42&amp;ts=859&amp;x=0"'} 
- body={"error":"Missing API key.","how_to_get_one":"https://reqres.in/signup"} 
- </msg>
-<msg time="2025-05-22T22:19:58.258982" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(</msg>
-<msg time="2025-05-22T22:19:58.259276" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/23</msg>
-<var>${response}</var>
-<arg>api</arg>
-<arg>url=${USERS_ENDPOINT}/${user_id}</arg>
-<doc>Sends a GET request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-05-22T22:19:57.865852" elapsed="0.394269">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/23</status>
-</kw>
-<return>
-<value>${response}</value>
-<status status="NOT RUN" start="2025-05-22T22:19:58.260270" elapsed="0.000046"/>
-</return>
-<var>${response}</var>
-<arg>23</arg>
-<doc>Envia uma requisição GET para buscar um usuário pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:57.865442" elapsed="0.395077">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/23</status>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${response.json()}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-05-22T22:19:58.260915" elapsed="0.000070"/>
-</kw>
-<kw name="Validar Status Code" owner="users_keywords">
-<arg>${response}</arg>
 <arg>401</arg>
-<status status="NOT RUN" start="2025-05-22T22:19:58.261365" elapsed="0.000059"/>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2025-05-23T00:46:36.877770" elapsed="0.000663"/>
 </kw>
-<doc>Testa a busca de um usuário inexistente pelo ID sem autenticação</doc>
-<status status="FAIL" start="2025-05-22T22:19:57.864706" elapsed="0.397125">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/23</status>
-</test>
-<test id="s1-t5" name="Atualizar Usuário com ID Válido" line="34">
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-05-22T22:19:58.263676" level="INFO">${payload} = {'name': 'John', 'job': 'Developer'}</msg>
-<var>${payload}</var>
-<arg>name=John</arg>
-<arg>job=Developer</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-05-22T22:19:58.263116" elapsed="0.000642"/>
-</kw>
-<kw name="Enviar Requisição PUT de Atualizar Usuário por ID" owner="users_keywords">
-<kw name="PUT On Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:19:58.645824" level="INFO">PUT Request : url=https://reqres.in/api/users/2 
- path_url=/api/users/2 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '36'} 
- body=b'{"name": "John", "job": "Developer"}' 
- </msg>
-<msg time="2025-05-22T22:19:58.646080" level="INFO">PUT Response : url=https://reqres.in/api/users/2 
- status=401, reason=Unauthorized 
- headers={'Date': 'Fri, 23 May 2025 01:19:58 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Vary': 'Accept-Encoding', 'Cf-Ray': '9440ba652e141595-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747963198&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=X4Ha45xQ5jwwItoiOlfc6FftIA5NvxXtWZEwyIMn2WI%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747963198&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=X4Ha45xQ5jwwItoiOlfc6FftIA5NvxXtWZEwyIMn2WI%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '97', 'Ratelimit-Reset': '60', 'Etag': 'W/"48-+Z5A4MsbyryWjwqUCtZ7548heDc"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'DYNAMIC', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=14307&amp;min_rtt=9445&amp;rtt_var=5657&amp;sent=18&amp;recv=16&amp;lost=0&amp;retrans=0&amp;sent_bytes=9133&amp;recv_bytes=1713&amp;delivery_rate=461091&amp;cwnd=256&amp;unsent_bytes=0&amp;cid=b6ea47f365babc42&amp;ts=1247&amp;x=0"'} 
- body={"error":"Missing API key.","how_to_get_one":"https://reqres.in/signup"} 
- </msg>
-<msg time="2025-05-22T22:19:58.646292" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(</msg>
-<msg time="2025-05-22T22:19:58.646617" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</msg>
-<var>${response}</var>
-<arg>api</arg>
-<arg>url=${USERS_ENDPOINT}/${user_id}</arg>
-<arg>json=${payload}</arg>
-<doc>Sends a PUT request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-05-22T22:19:58.264752" elapsed="0.382865">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</kw>
-<return>
-<value>${response}</value>
-<status status="NOT RUN" start="2025-05-22T22:19:58.647823" elapsed="0.000058"/>
-</return>
-<var>${response}</var>
-<arg>2</arg>
-<arg>${payload}</arg>
-<doc>Envia uma requisição PUT para atualizar um usuário pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:58.264131" elapsed="0.383984">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</kw>
-<kw name="Log" owner="BuiltIn">
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2025-05-23T00:46:36.879233" level="INFO">${error} = Missing API key.</msg>
+<var>${error}</var>
 <arg>${response.json()}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-05-22T22:19:58.648568" elapsed="0.000079"/>
-</kw>
-<kw name="Validar Status Code" owner="users_keywords">
-<arg>${response}</arg>
-<arg>200</arg>
-<status status="NOT RUN" start="2025-05-22T22:19:58.649131" elapsed="0.000068"/>
+<arg>error</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2025-05-23T00:46:36.878632" elapsed="0.000638"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
-<arg>${response.json()}</arg>
-<arg>updatedAt</arg>
+<arg>${error}</arg>
+<arg>Missing API key</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="NOT RUN" start="2025-05-22T22:19:58.649516" elapsed="0.000089"/>
+<status status="PASS" start="2025-05-23T00:46:36.879453" elapsed="0.000185"/>
 </kw>
-<doc>Testa a atualização de um usuário existente pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:58.262345" elapsed="0.387738">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
+<status status="PASS" start="2025-05-23T00:46:36.437652" elapsed="0.442175"/>
 </test>
-<test id="s1-t6" name="Atualizar Usuário com ID Inválido" line="42">
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-05-22T22:19:58.652599" level="INFO">${payload} = {'name': 'Jane', 'job': 'Tester'}</msg>
-<var>${payload}</var>
-<arg>name=Jane</arg>
-<arg>job=Tester</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-05-22T22:19:58.652107" elapsed="0.000568"/>
-</kw>
-<kw name="Enviar Requisição PUT de Atualizar Usuário por ID" owner="users_keywords">
-<kw name="PUT On Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:19:59.043568" level="INFO">PUT Request : url=https://reqres.in/api/users/9999 
- path_url=/api/users/9999 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '33'} 
- body=b'{"name": "Jane", "job": "Tester"}' 
- </msg>
-<msg time="2025-05-22T22:19:59.043908" level="INFO">PUT Response : url=https://reqres.in/api/users/9999 
- status=401, reason=Unauthorized 
- headers={'Date': 'Fri, 23 May 2025 01:19:59 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Vary': 'Accept-Encoding', 'Cf-Ray': '9440ba679e411595-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747963198&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=X4Ha45xQ5jwwItoiOlfc6FftIA5NvxXtWZEwyIMn2WI%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747963198&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=X4Ha45xQ5jwwItoiOlfc6FftIA5NvxXtWZEwyIMn2WI%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '96', 'Ratelimit-Reset': '59', 'Etag': 'W/"48-+Z5A4MsbyryWjwqUCtZ7548heDc"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'DYNAMIC', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=15304&amp;min_rtt=9445&amp;rtt_var=6235&amp;sent=21&amp;recv=18&amp;lost=0&amp;retrans=0&amp;sent_bytes=10411&amp;recv_bytes=1996&amp;delivery_rate=461091&amp;cwnd=256&amp;unsent_bytes=0&amp;cid=b6ea47f365babc42&amp;ts=1644&amp;x=0"'} 
- body={"error":"Missing API key.","how_to_get_one":"https://reqres.in/signup"} 
- </msg>
-<msg time="2025-05-22T22:19:59.044466" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(</msg>
-<msg time="2025-05-22T22:19:59.044895" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</msg>
-<var>${response}</var>
-<arg>api</arg>
-<arg>url=${USERS_ENDPOINT}/${user_id}</arg>
-<arg>json=${payload}</arg>
-<doc>Sends a PUT request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-05-22T22:19:58.653909" elapsed="0.392150">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</status>
-</kw>
-<return>
-<value>${response}</value>
-<status status="NOT RUN" start="2025-05-22T22:19:59.046286" elapsed="0.000067"/>
-</return>
-<var>${response}</var>
-<arg>9999</arg>
-<arg>${payload}</arg>
-<doc>Envia uma requisição PUT para atualizar um usuário pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:58.653138" elapsed="0.393505">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</status>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${response.json()}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-05-22T22:19:59.047229" elapsed="0.000082"/>
-</kw>
-<kw name="Validar Status Code" owner="users_keywords">
-<arg>${response}</arg>
-<arg>200</arg>
-<status status="NOT RUN" start="2025-05-22T22:19:59.047877" elapsed="0.000085"/>
-</kw>
-<kw name="Should Contain" owner="BuiltIn">
-<arg>${response.json()}</arg>
-<arg>updatedAt</arg>
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="NOT RUN" start="2025-05-22T22:19:59.048369" elapsed="0.000101"/>
-</kw>
-<doc>Testa a atualização de um usuário inexistente pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:58.650690" elapsed="0.398384">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</status>
-</test>
-<test id="s1-t7" name="Atualizar Parcialmente Usuário com ID Válido" line="50">
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-05-22T22:19:59.051510" level="INFO">${payload} = {'job': 'QA'}</msg>
-<var>${payload}</var>
-<arg>job=QA</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-05-22T22:19:59.050978" elapsed="0.000656"/>
-</kw>
-<kw name="Enviar Requisição PATCH de Atualizar Usuário por ID" owner="users_keywords">
-<kw name="PATCH On Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:19:59.437284" level="INFO">PATCH Request : url=https://reqres.in/api/users/2 
- path_url=/api/users/2 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '13'} 
- body=b'{"job": "QA"}' 
- </msg>
-<msg time="2025-05-22T22:19:59.437574" level="INFO">PATCH Response : url=https://reqres.in/api/users/2 
- status=401, reason=Unauthorized 
- headers={'Date': 'Fri, 23 May 2025 01:19:59 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Cf-Ray': '9440ba6a1ed81595-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747963199&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=fRwl30J1DX6fqo4RGdQwAOG9XMzQXnk5nTR3NgfVRZk%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747963199&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=fRwl30J1DX6fqo4RGdQwAOG9XMzQXnk5nTR3NgfVRZk%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '95', 'Ratelimit-Reset': '59', 'Etag': 'W/"48-+Z5A4MsbyryWjwqUCtZ7548heDc"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'DYNAMIC', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=16407&amp;min_rtt=9445&amp;rtt_var=6884&amp;sent=24&amp;recv=20&amp;lost=0&amp;retrans=0&amp;sent_bytes=11690&amp;recv_bytes=2258&amp;delivery_rate=461091&amp;cwnd=256&amp;unsent_bytes=0&amp;cid=b6ea47f365babc42&amp;ts=2037&amp;x=0"'} 
- body={"error":"Missing API key.","how_to_get_one":"https://reqres.in/signup"} 
- </msg>
-<msg time="2025-05-22T22:19:59.437864" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(</msg>
-<msg time="2025-05-22T22:19:59.438284" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</msg>
-<var>${response}</var>
-<arg>api</arg>
-<arg>url=${USERS_ENDPOINT}/${user_id}</arg>
-<arg>json=${payload}</arg>
-<doc>Sends a PATCH request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-05-22T22:19:59.053278" elapsed="0.386193">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</kw>
-<return>
-<value>${response}</value>
-<status status="NOT RUN" start="2025-05-22T22:19:59.439698" elapsed="0.000091"/>
-</return>
-<var>${response}</var>
-<arg>2</arg>
-<arg>${payload}</arg>
-<doc>Envia uma requisição PATCH para atualizar parcialmente um usuário pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:59.052224" elapsed="0.387857">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${response.json()}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-05-22T22:19:59.440676" elapsed="0.000098"/>
-</kw>
-<kw name="Validar Status Code" owner="users_keywords">
-<arg>${response}</arg>
-<arg>200</arg>
-<status status="NOT RUN" start="2025-05-22T22:19:59.441317" elapsed="0.000090"/>
-</kw>
-<kw name="Should Contain" owner="BuiltIn">
-<arg>${response.json()}</arg>
-<arg>updatedAt</arg>
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="NOT RUN" start="2025-05-22T22:19:59.441823" elapsed="0.000104"/>
-</kw>
-<doc>Testa a atualização parcial de um usuário existente pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:59.049861" elapsed="0.392652">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</test>
-<test id="s1-t8" name="Atualizar Parcialmente Usuário com ID Inválido" line="58">
-<kw name="Create Dictionary" owner="BuiltIn">
-<msg time="2025-05-22T22:19:59.445332" level="INFO">${payload} = {'job': 'DevOps'}</msg>
-<var>${payload}</var>
-<arg>job=DevOps</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<status status="PASS" start="2025-05-22T22:19:59.444569" elapsed="0.000856"/>
-</kw>
-<kw name="Enviar Requisição PATCH de Atualizar Usuário por ID" owner="users_keywords">
-<kw name="PATCH On Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:19:59.832923" level="INFO">PATCH Request : url=https://reqres.in/api/users/9999 
- path_url=/api/users/9999 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '17'} 
- body=b'{"job": "DevOps"}' 
- </msg>
-<msg time="2025-05-22T22:19:59.833217" level="INFO">PATCH Response : url=https://reqres.in/api/users/9999 
- status=401, reason=Unauthorized 
- headers={'Date': 'Fri, 23 May 2025 01:19:59 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Cf-Ray': '9440ba6c98461595-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747963199&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=fRwl30J1DX6fqo4RGdQwAOG9XMzQXnk5nTR3NgfVRZk%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747963199&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=fRwl30J1DX6fqo4RGdQwAOG9XMzQXnk5nTR3NgfVRZk%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '94', 'Ratelimit-Reset': '59', 'Etag': 'W/"48-+Z5A4MsbyryWjwqUCtZ7548heDc"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'DYNAMIC', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=17455&amp;min_rtt=9445&amp;rtt_var=7258&amp;sent=27&amp;recv=22&amp;lost=0&amp;retrans=0&amp;sent_bytes=12946&amp;recv_bytes=2527&amp;delivery_rate=461091&amp;cwnd=256&amp;unsent_bytes=0&amp;cid=b6ea47f365babc42&amp;ts=2434&amp;x=0"'} 
- body={"error":"Missing API key.","how_to_get_one":"https://reqres.in/signup"} 
- </msg>
-<msg time="2025-05-22T22:19:59.833665" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(</msg>
-<msg time="2025-05-22T22:19:59.834049" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</msg>
-<var>${response}</var>
-<arg>api</arg>
-<arg>url=${USERS_ENDPOINT}/${user_id}</arg>
-<arg>json=${payload}</arg>
-<doc>Sends a PATCH request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-05-22T22:19:59.446968" elapsed="0.388069">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</status>
-</kw>
-<return>
-<value>${response}</value>
-<status status="NOT RUN" start="2025-05-22T22:19:59.835266" elapsed="0.000068"/>
-</return>
-<var>${response}</var>
-<arg>9999</arg>
-<arg>${payload}</arg>
-<doc>Envia uma requisição PATCH para atualizar parcialmente um usuário pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:59.446085" elapsed="0.389540">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</status>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${response.json()}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-05-22T22:19:59.836163" elapsed="0.000073"/>
-</kw>
-<kw name="Validar Status Code" owner="users_keywords">
-<arg>${response}</arg>
-<arg>200</arg>
-<status status="NOT RUN" start="2025-05-22T22:19:59.836799" elapsed="0.000085"/>
-</kw>
-<kw name="Should Contain" owner="BuiltIn">
-<arg>${response.json()}</arg>
-<arg>updatedAt</arg>
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="NOT RUN" start="2025-05-22T22:19:59.837281" elapsed="0.000095"/>
-</kw>
-<doc>Testa a atualização parcial de um usuário inexistente pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:59.443239" elapsed="0.394688">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</status>
-</test>
-<test id="s1-t9" name="Deletar Usuário com ID Válido" line="66">
-<kw name="Enviar Requisição DELETE de Deletar Usuário por ID" owner="users_keywords">
-<kw name="DELETE On Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:20:00.230526" level="INFO">DELETE Request : url=https://reqres.in/api/users/2 
- path_url=/api/users/2 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '0'} 
- body=None 
- </msg>
-<msg time="2025-05-22T22:20:00.230839" level="INFO">DELETE Response : url=https://reqres.in/api/users/2 
- status=401, reason=Unauthorized 
- headers={'Date': 'Fri, 23 May 2025 01:20:00 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Cf-Ray': '9440ba6f083d1595-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747963200&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=01mtpvwvahaQwf%2BmwetaceMZjYpKXAUlgBdEcYMjUbw%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747963200&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=01mtpvwvahaQwf%2BmwetaceMZjYpKXAUlgBdEcYMjUbw%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '93', 'Ratelimit-Reset': '58', 'Etag': 'W/"48-+Z5A4MsbyryWjwqUCtZ7548heDc"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'DYNAMIC', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=17994&amp;min_rtt=9445&amp;rtt_var=6522&amp;sent=29&amp;recv=23&amp;lost=0&amp;retrans=0&amp;sent_bytes=14202&amp;recv_bytes=2754&amp;delivery_rate=461091&amp;cwnd=256&amp;unsent_bytes=0&amp;cid=b6ea47f365babc42&amp;ts=2827&amp;x=0"'} 
- body={"error":"Missing API key.","how_to_get_one":"https://reqres.in/signup"} 
- </msg>
-<msg time="2025-05-22T22:20:00.231137" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(</msg>
-<msg time="2025-05-22T22:20:00.231546" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</msg>
-<var>${response}</var>
-<arg>api</arg>
-<arg>url=${USERS_ENDPOINT}/${user_id}</arg>
-<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-05-22T22:19:59.841274" elapsed="0.391403">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</kw>
-<return>
-<value>${response}</value>
-<status status="NOT RUN" start="2025-05-22T22:20:00.232918" elapsed="0.000069"/>
-</return>
-<var>${response}</var>
-<arg>2</arg>
-<doc>Envia uma requisição DELETE para deletar um usuário pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:59.839911" elapsed="0.393371">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${response.status_code}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-05-22T22:20:00.233809" elapsed="0.000079"/>
-</kw>
-<kw name="Validar Status Code" owner="users_keywords">
-<arg>${response}</arg>
-<arg>204</arg>
-<status status="NOT RUN" start="2025-05-22T22:20:00.234373" elapsed="0.000081"/>
-</kw>
-<doc>Testa a exclusão de um usuário existente pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:19:59.838708" elapsed="0.396244">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/2</status>
-</test>
-<test id="s1-t10" name="Deletar Usuário com ID Inválido" line="72">
-<kw name="Enviar Requisição DELETE de Deletar Usuário por ID" owner="users_keywords">
-<kw name="DELETE On Session" owner="RequestsLibrary">
-<msg time="2025-05-22T22:20:00.625505" level="INFO">DELETE Request : url=https://reqres.in/api/users/9999 
- path_url=/api/users/9999 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '0'} 
- body=None 
- </msg>
-<msg time="2025-05-22T22:20:00.625836" level="INFO">DELETE Response : url=https://reqres.in/api/users/9999 
- status=401, reason=Unauthorized 
- headers={'Date': 'Fri, 23 May 2025 01:20:00 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Cf-Ray': '9440ba718ff71595-GRU', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1747963200&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=01mtpvwvahaQwf%2BmwetaceMZjYpKXAUlgBdEcYMjUbw%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1747963200&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=01mtpvwvahaQwf%2BmwetaceMZjYpKXAUlgBdEcYMjUbw%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Ratelimit-Policy': '100;w=60', 'Ratelimit-Limit': '100', 'Ratelimit-Remaining': '92', 'Ratelimit-Reset': '58', 'Etag': 'W/"48-+Z5A4MsbyryWjwqUCtZ7548heDc"', 'Via': '1.1 vegur', 'Cf-Cache-Status': 'DYNAMIC', 'server-timing': 'cfL4;desc="?proto=TCP&amp;rtt=19146&amp;min_rtt=9445&amp;rtt_var=7195&amp;sent=31&amp;recv=24&amp;lost=0&amp;retrans=0&amp;sent_bytes=15462&amp;recv_bytes=2984&amp;delivery_rate=461091&amp;cwnd=256&amp;unsent_bytes=0&amp;cid=b6ea47f365babc42&amp;ts=3226&amp;x=0"'} 
- body={"error":"Missing API key.","how_to_get_one":"https://reqres.in/signup"} 
- </msg>
-<msg time="2025-05-22T22:20:00.626383" level="INFO">/home/cortes/Documents/Compass Estágio/ReqRes - API/venv/lib/python3.12/site-packages/urllib3/connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(</msg>
-<msg time="2025-05-22T22:20:00.626829" level="FAIL">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</msg>
-<var>${response}</var>
-<arg>api</arg>
-<arg>url=${USERS_ENDPOINT}/${user_id}</arg>
-<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
-<status status="FAIL" start="2025-05-22T22:20:00.237567" elapsed="0.390431">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</status>
-</kw>
-<return>
-<value>${response}</value>
-<status status="NOT RUN" start="2025-05-22T22:20:00.628220" elapsed="0.000067"/>
-</return>
-<var>${response}</var>
-<arg>9999</arg>
-<doc>Envia uma requisição DELETE para deletar um usuário pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:20:00.236865" elapsed="0.391706">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</status>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<arg>${response.status_code}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="NOT RUN" start="2025-05-22T22:20:00.629108" elapsed="0.000079"/>
-</kw>
-<kw name="Validar Status Code" owner="users_keywords">
-<arg>${response}</arg>
-<arg>204</arg>
-<status status="NOT RUN" start="2025-05-22T22:20:00.629672" elapsed="0.000104"/>
-</kw>
-<doc>Testa a exclusão de um usuário inexistente pelo ID</doc>
-<status status="FAIL" start="2025-05-22T22:20:00.235703" elapsed="0.394558">HTTPError: 401 Client Error: Unauthorized for url: https://reqres.in/api/users/9999</status>
-</test>
-<status status="FAIL" start="2025-05-22T22:19:57.241052" elapsed="3.390536"/>
+<doc>Testes para o endpoint de logout</doc>
+<status status="PASS" start="2025-05-23T00:46:35.889331" elapsed="0.990990"/>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="8" skip="0">All Tests</stat>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Test Users" id="s1" pass="2" fail="8" skip="0">Test Users</stat>
+<stat name="Test Logout" id="s1" pass="2" fail="0" skip="0">Test Logout</stat>
 </suite>
 </statistics>
 <errors>
-<msg time="2025-05-22T22:19:57.347853" level="WARN">Error in file '/home/cortes/Documents/Compass Estágio/ReqRes - API/keywords/users_keywords.robot' on line 19: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
-<msg time="2025-05-22T22:19:57.348115" level="WARN">Error in file '/home/cortes/Documents/Compass Estágio/ReqRes - API/keywords/users_keywords.robot' on line 25: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-05-23T00:46:35.919981" level="WARN">Error in file '/home/cortes/Documents/Compass Estágio/ReqRes - API/keywords/logout_keywords.robot' on line 16: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-05-23T00:46:35.920197" level="WARN">Error in file '/home/cortes/Documents/Compass Estágio/ReqRes - API/keywords/logout_keywords.robot' on line 21: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-05-23T00:46:36.009909" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg time="2025-05-23T00:46:36.438897" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
 </errors>
 </robot>
