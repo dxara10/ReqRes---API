@@ -1,47 +1,58 @@
 *** Settings ***
 Library    RequestsLibrary
 Library    BuiltIn
+Library    Collections
+Resource    login_keywords.robot
 
 *** Variables ***
-${BASE_URL}       https://reqres.in
+${BASE_URL}          https://reqres.in
 ${USERS_ENDPOINT}    /api/users
-${headers}        {"Content-Type": "application/json"}
+${HEADERS}           {"Content-Type": "application/json"}
 
 *** Keywords ***
-Criar Sessão
-    [Documentation]    Cria uma sessão para requisições à API ReqRes
-    Create Session    api    ${BASE_URL}  headers=${headers}
+Criar Sessão API
+    [Documentation]    Cria uma sessão para a API ReqRes
+    Create Session    api    ${BASE_URL}    headers=${HEADERS}
 
-Enviar Requisição GET de Listar Usuários
-    [Arguments]    ${page}
-    [Documentation]    Envia uma requisição GET para listar usuários na página especificada
+Listar Usuários Por Página
+    [Arguments]    ${page}    ${expected_status}
+    [Documentation]    Lista usuários informando a página e valida o status code
     ${response}=    GET On Session    api    url=${USERS_ENDPOINT}?page=${page}
-    [Return]    ${response}
+    Log    ${response.json()}
+    Validar Status Code    ${response}    ${expected_status}
 
-Enviar Requisição GET de Buscar Usuário por ID
-    [Arguments]    ${user_id}
-    [Documentation]    Envia uma requisição GET para buscar um usuário pelo ID
+Buscar Usuário Por ID
+    [Arguments]    ${user_id}    ${expected_status}
+    [Documentation]    Busca usuário pelo ID e valida o status code
     ${response}=    GET On Session    api    url=${USERS_ENDPOINT}/${user_id}
-    [Return]    ${response}
+    Log    ${response.json()}
+    Validar Status Code    ${response}    ${expected_status}
+
+Atualizar Usuário Com PUT
+    [Arguments]    ${user_id}    ${payload}    ${expected_status}
+    [Documentation]    Atualiza completamente um usuário e valida o status code
+    ${response}=    PUT On Session    api    url=${USERS_ENDPOINT}/${user_id}    json=${payload}
+    Log    ${response.json()}
+    Validar Status Code    ${response}    ${expected_status}
+    Should Contain    ${response.json()}    updatedAt
+
+Atualizar Usuário Com PATCH
+    [Arguments]    ${user_id}    ${payload}    ${expected_status}
+    [Documentation]    Atualiza parcialmente um usuário e valida o status code
+    ${response}=    PATCH On Session    api    url=${USERS_ENDPOINT}/${user_id}    json=${payload}
+    Log    ${response.json()}
+    Validar Status Code    ${response}    ${expected_status}
+    Should Contain    ${response.json()}    updatedAt
+
+Deletar Usuário
+    [Arguments]    ${user_id}    ${expected_status}
+    [Documentation]    Deleta um usuário pelo ID e valida o status code
+    ${response}=    DELETE On Session    api    url=${USERS_ENDPOINT}/${user_id}
+    Log    ${response.status_code}
+    Validar Status Code    ${response}    ${expected_status}
 
 Validar Status Code
     [Arguments]    ${response}    ${expected_status}
+    [Documentation]    Valida se o status code retornado é o esperado
     Should Be Equal As Numbers    ${response.status_code}    ${expected_status}
 
-Enviar Requisição PUT de Atualizar Usuário por ID
-    [Arguments]    ${user_id}    ${payload}
-    [Documentation]    Envia uma requisição PUT para atualizar um usuário pelo ID
-    ${response}=    PUT On Session    api    url=${USERS_ENDPOINT}/${user_id}    json=${payload}
-    RETURN    ${response}
-
-Enviar Requisição PATCH de Atualizar Usuário por ID
-    [Arguments]    ${user_id}    ${payload}
-    [Documentation]    Envia uma requisição PATCH para atualizar parcialmente um usuário pelo ID
-    ${response}=    PATCH On Session    api    url=${USERS_ENDPOINT}/${user_id}    json=${payload}
-    RETURN    ${response}
-
-Enviar Requisição DELETE de Deletar Usuário por ID
-    [Arguments]    ${user_id}
-    [Documentation]    Envia uma requisição DELETE para deletar um usuário pelo ID
-    ${response}=    DELETE On Session    api    url=${USERS_ENDPOINT}/${user_id}
-    RETURN    ${response}
