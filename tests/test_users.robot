@@ -1,76 +1,63 @@
 *** Settings ***
-Library           Collections
-Library           RequestsLibrary
-Resource          ../keywords/users_keywords.robot
+Resource    ../keywords/users_keywords.robot
+Resource    ../keywords/login_keywords.robot
 
-Suite Setup       Criar Sessão
+Suite Setup    Criar Sessão API
 
 *** Test Cases ***
-Listar Usuários Com Página Válida
-    [Documentation]    Testa a listagem de usuários com uma página válida
-    ${response}=    Enviar Requisição GET de Listar Usuários    1
-    Log    ${response.json()}
-    Validar Status Code    ${response}    200
+Login com Sucesso
+    Validar Login Com Sucesso
 
-Listar Usuários Com Página Inválida
-    [Documentation]    Testa a listagem de usuários com uma página inexistente
-    ${response}=    Enviar Requisição GET de Listar Usuários    999
-    Log    ${response.json()}
-    Validar Status Code    ${response}    200
+Login Falha - Sem Email
+    Validar Erro Sem Email
 
+Login Falha - Sem Senha
+    Validar Erro Sem Senha
 
-Buscar Usuário por ID Válido
-    [Documentation]    Testa a busca de um usuário existente pelo ID
-    ${response}=    Enviar Requisição GET de Buscar Usuário por ID    2
-    Log    ${response.json()}
-    Validar Status Code    ${response}    200
+Login Falha - Credenciais Inválidas
+    Validar Erro Credenciais Invalidas
 
-Buscar Usuário por ID Inválido
-    [Documentation]    Testa a busca de um usuário inexistente pelo ID sem autenticação
-    ${response}=    users_keywords.Enviar Requisição GET de Buscar Usuário por ID    23
-    Log    ${response.json()}
-    Validar Status Code    ${response}    401
+Listar Usuários - Página Válida
+    Validar Login Com Sucesso
+    Listar Usuários Por Página    1    200
 
-Atualizar Usuário com ID Válido
-    [Documentation]    Testa a atualização de um usuário existente pelo ID
+Listar Usuários - Página Inexistente
+    Validar Login Com Sucesso
+    Listar Usuários Por Página    999    200
+
+Buscar Usuário - ID Válido
+    Validar Login Com Sucesso
+    Buscar Usuário Por ID    2    200
+
+Buscar Usuário - ID Inexistente
+    Validar Login Com Sucesso
+    Buscar Usuário Por ID    23    404
+
+Atualizar Usuário - PUT - ID Válido
+    Validar Login Com Sucesso
     ${payload}=    Create Dictionary    name=John    job=Developer
-    ${response}=    Enviar Requisição PUT de Atualizar Usuário por ID    2    ${payload}
-    Log    ${response.json()}
-    Validar Status Code    ${response}    200
-    Should Contain    ${response.json()}    updatedAt
+    Atualizar Usuário Com PUT    2    ${payload}    200
 
-Atualizar Usuário com ID Inválido
-    [Documentation]    Testa a atualização de um usuário inexistente pelo ID
+Atualizar Usuário - PUT - ID Inexistente
+    Validar Login Com Sucesso
     ${payload}=    Create Dictionary    name=Jane    job=Tester
-    ${response}=    Enviar Requisição PUT de Atualizar Usuário por ID    9999    ${payload}
-    Log    ${response.json()}
-    Validar Status Code    ${response}    200
-    Should Contain    ${response.json()}    updatedAt
+    Atualizar Usuário Com PUT    9999    ${payload}    200
 
-Atualizar Parcialmente Usuário com ID Válido
-    [Documentation]    Testa a atualização parcial de um usuário existente pelo ID
+Atualizar Usuário - PATCH - ID Válido
+    Validar Login Com Sucesso
     ${payload}=    Create Dictionary    job=QA
-    ${response}=    Enviar Requisição PATCH de Atualizar Usuário por ID    2    ${payload}
-    Log    ${response.json()}
-    Validar Status Code    ${response}    200
-    Should Contain    ${response.json()}    updatedAt
+    Atualizar Usuário Com PATCH    2    ${payload}    200
 
-Atualizar Parcialmente Usuário com ID Inválido
-    [Documentation]    Testa a atualização parcial de um usuário inexistente pelo ID
+Atualizar Usuário - PATCH - ID Inexistente
+    Validar Login Com Sucesso
     ${payload}=    Create Dictionary    job=DevOps
-    ${response}=    Enviar Requisição PATCH de Atualizar Usuário por ID    9999    ${payload}
-    Log    ${response.json()}
-    Validar Status Code    ${response}    200
-    Should Contain    ${response.json()}    updatedAt
+    Atualizar Usuário Com PATCH    9999    ${payload}    200
 
-Deletar Usuário com ID Válido
-    [Documentation]    Testa a exclusão de um usuário existente pelo ID
-    ${response}=    Enviar Requisição DELETE de Deletar Usuário por ID    2
-    Log    ${response.status_code}
-    Validar Status Code    ${response}    204
+Deletar Usuário - ID Válido
+    Validar Login Com Sucesso
+    Deletar Usuário    2    204
 
-Deletar Usuário com ID Inválido
-    [Documentation]    Testa a exclusão de um usuário inexistente pelo ID
-    ${response}=    Enviar Requisição DELETE de Deletar Usuário por ID    9999
-    Log    ${response.status_code}
-    Validar Status Code    ${response}    204
+Deletar Usuário - ID Inexistente
+    Validar Login Com Sucesso
+    Deletar Usuário    9999    204
+
