@@ -11,11 +11,32 @@ ${API_KEY}          reqres-free-v1
 *** Keywords ***
 Realizar Login
     [Arguments]    ${email}    ${password}
-    ${headers}=    Create Dictionary    x-api-key=${API_KEY}
-    Create Session    login_session    ${BASE_URL}    headers=${headers}
-    ${payload}=    Create Dictionary    email=${email}    password=${password}
-    ${response}=    Post Request    login_session    ${LOGIN_ENDPOINT}    json=${payload}
+    ${headers}=    Create Dictionary    
+    ...    x-api-key=${API_KEY}
+    
+    Create Session    login_session    
+    ...    ${BASE_URL}    
+    ...    headers=${headers}
+
+    ${payload}=    Create Dictionary    
+    ...    email=${email}    
+    ...    password=${password}
+
+    ${response}=    Post Request    login_session    
+    ...    ${LOGIN_ENDPOINT}    
+    ...    json=${payload}
+
     [Return]    ${response}
+
+Token De Autenticacao
+    [Arguments]    ${email}    ${password}
+    ${response}=    Realizar Login    ${email}    ${password}
+    
+    ${json}=    To Json    ${response.content}
+    ${token}=    Set Variable    ${json['token']}
+
+    Set Global Variable    ${AUTH_TOKEN}    ${token}
+
 
 Validar Login Com Sucesso
     ${email}=    Set Variable    eve.holt@reqres.in

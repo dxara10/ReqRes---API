@@ -10,7 +10,9 @@ ${API_KEY}          reqres-free-v1
 
 *** Keywords ***
 Realizar Logout Com Api Key
-    ${headers}=    Create Dictionary    x-api-key=${API_KEY}
+    ${headers}=    Create Dictionary    
+    ...    x-api-key=${API_KEY}
+
     Create Session    logout_session    ${BASE_URL}    headers=${headers}
     ${response}=    Post Request    logout_session    ${LOGOUT_ENDPOINT}
     [Return]    ${response}

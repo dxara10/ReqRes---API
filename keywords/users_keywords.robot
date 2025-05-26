@@ -55,4 +55,3 @@ Validar Status Code
     [Arguments]    ${response}    ${expected_status}
     [Documentation]    Valida se o status code retornado é o esperado
     Should Be Equal As Numbers    ${response.status_code}    ${expected_status}
-

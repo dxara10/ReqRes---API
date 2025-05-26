@@ -10,7 +10,9 @@ ${API_KEY}            reqres-free-v1
 
 *** Keywords ***
 Validar Buscar Lista De Resources Com Sucesso
-    ${headers}=    Create Dictionary    x-api-key=${API_KEY}
+    ${headers}=    Create Dictionary    
+    ...    x-api-key=${API_KEY}
+
     Create Session    resource_list    ${BASE_URL}    headers=${headers}
     ${response}=    Get Request    resource_list    ${RESOURCE_ENDPOINT}
     Should Be Equal As Integers    ${response.status_code}    200
@@ -21,7 +23,9 @@ Validar Buscar Lista De Resources Com Sucesso
 
 Validar Buscar Resource Por Id Com Sucesso
     ${resource_id}=    Set Variable    2
-    ${headers}=    Create Dictionary    x-api-key=${API_KEY}
+    ${headers}=    Create Dictionary    
+    ...    x-api-key=${API_KEY}
+
     Create Session    resource_by_id    ${BASE_URL}    headers=${headers}
     ${endpoint}=    Set Variable    ${RESOURCE_ENDPOINT}/${resource_id}
     ${response}=    Get Request    resource_by_id    ${endpoint}
@@ -34,8 +38,13 @@ Validar Buscar Resource Por Id Com Sucesso
 
 Validar Atualizar Resource Por Id Com Sucesso
     ${resource_id}=    Set Variable    2
-    ${payload}=    Create Dictionary    name=novo_nome    color=#FFFFFF
-    ${headers}=    Create Dictionary    x-api-key=${API_KEY}
+    ${payload}=    Create Dictionary    
+    ...    name=novo_nome    
+    ...    color=#FFFFFF
+
+    ${headers}=    Create Dictionary    
+    ...    x-api-key=${API_KEY}
+
     Create Session    update_resource    ${BASE_URL}    headers=${headers}
     ${endpoint}=    Set Variable    ${RESOURCE_ENDPOINT}/${resource_id}
     ${response}=    Put Request    update_resource    ${endpoint}    json=${payload}
@@ -45,8 +54,12 @@ Validar Atualizar Resource Por Id Com Sucesso
 
 Validar Atualizar Parcialmente Resource Por Id Com Sucesso
     ${resource_id}=    Set Variable    2
-    ${payload}=    Create Dictionary    name=patch_nome
-    ${headers}=    Create Dictionary    x-api-key=${API_KEY}
+    ${payload}=    Create Dictionary    
+    ...    name=patch_nome
+
+    ${headers}=    Create Dictionary    
+    ...    x-api-key=${API_KEY}
+
     Create Session    patch_resource    ${BASE_URL}    headers=${headers}
     ${endpoint}=    Set Variable    ${RESOURCE_ENDPOINT}/${resource_id}
     ${response}=    Patch Request    patch_resource    ${endpoint}    json=${payload}

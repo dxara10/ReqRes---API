@@ -11,9 +11,12 @@ ${API_KEY}            reqres-free-v1
 *** Keywords ***
 Realizar Registro
     [Arguments]    ${username}    ${email}    ${password}
-    ${headers}=    Create Dictionary    x-api-key=${API_KEY}
+    ${headers}=    Create Dictionary    
+    ...    x-api-key=${API_KEY}
     Create Session    register_session    ${BASE_URL}    headers=${headers}
-    ${payload}=    Create Dictionary    email=${email}    password=${password}
+    ${payload}=    Create Dictionary    
+    ...    email=${email}    
+    ...    password=${password}
     ${response}=    Post Request    register_session    ${REGISTER_ENDPOINT}    json=${payload}
     [Return]    ${response}
 
