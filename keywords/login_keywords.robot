@@ -14,28 +14,24 @@ Realizar Login
     ${headers}=    Create Dictionary    
     ...    x-api-key=${API_KEY}
     
-    Create Session    login_session    
-    ...    ${BASE_URL}    
-    ...    headers=${headers}
+    Create Session    login_session    ${BASE_URL}    headers=${headers} 
 
     ${payload}=    Create Dictionary    
     ...    email=${email}    
     ...    password=${password}
 
-    ${response}=    Post Request    login_session    
-    ...    ${LOGIN_ENDPOINT}    
-    ...    json=${payload}
+    ${response}=    Post Request    login_session    ${LOGIN_ENDPOINT}    json=${payload}
 
     [Return]    ${response}
 
 Token De Autenticacao
     [Arguments]    ${email}    ${password}
     ${response}=    Realizar Login    ${email}    ${password}
-    
-    ${json}=    To Json    ${response.content}
-    ${token}=    Set Variable    ${json['token']}
-
+    Should Be Equal As Integers    ${response.status_code}    200
+    ${token}=    Get From Dictionary    ${response.json()}    token
+    Should Not Be Empty    ${token}
     Set Global Variable    ${AUTH_TOKEN}    ${token}
+    
 
 
 Validar Login Com Sucesso

@@ -1,57 +1,65 @@
 *** Settings ***
+Documentation    Testes automatizados para o endpoint de usuarios
+Resource    ../keywords/login_keywords.robot
+Resource    ../keywords/users_keywords.robot
 Library    RequestsLibrary
-Library    BuiltIn
-Library    Collections
-Resource    login_keywords.robot
+
+Library    ../venv/lib/python3.12/site-packages/RequestsLibrary/__init__.py
 
 *** Variables ***
-${BASE_URL}          https://reqres.in
-${USERS_ENDPOINT}    /api/users
-${HEADERS}           {"Content-Type": "application/json"}
+${email}        eve.holt@reqres.in
+${password}    cityslicka
+${token_auth}    QpwL5tke4Pnpja7X4
+
 
 *** Keywords ***
-Criar Sessão API
-    [Documentation]    Cria uma sessão para a API ReqRes
-    Create Session    api    ${BASE_URL}    headers=${HEADERS}
+Get Listar Usuarios 200    
+    &{payload}    Create Dictionary    id=0    email=string    first_name=string    last_name=string    avatar=string 
+    ${response}=    Get Request    login_session    /api/users/2    params=${payload}
+    Log    Response: ${response.json()}
+    Log    Status Code: ${response.status_code}
+    Log    Headers: ${response.headers}
+    Log    Content-Type: ${response.headers['Content-Type']}
+    Should Be Equal As Integers    ${response.status_code}    200
 
-Listar Usuários Por Página
-    [Arguments]    ${page}    ${expected_status}
-    [Documentation]    Lista usuários informando a página e valida o status code
-    ${response}=    GET On Session    api    url=${USERS_ENDPOINT}?page=${page}
-    Log    ${response.json()}
-    Validar Status Code    ${response}    ${expected_status}
 
-Buscar Usuário Por ID
-    [Arguments]    ${user_id}    ${expected_status}
-    [Documentation]    Busca usuário pelo ID e valida o status code
-    ${response}=    GET On Session    api    url=${USERS_ENDPOINT}/${user_id}
-    Log    ${response.json()}
-    Validar Status Code    ${response}    ${expected_status}
+Get Usuario Por Id 200
+    [Arguments]    ${id}
+    &{payload}    Create Dictionary    id=${id}    email=string    first_name=string    last_name=string    avatar=string 
+    ${response}=    Get Request    login_session    /api/users/${id}    params=${payload}
+    Log    Response: ${response.json()}
+    Log    Status Code: ${response.status_code}
+    Log    Headers: ${response.headers}
+    Log    Content-Type: ${response.headers['Content-Type']}
+    Should Be Equal As Integers    ${response.status_code}    200
 
-Atualizar Usuário Com PUT
-    [Arguments]    ${user_id}    ${payload}    ${expected_status}
-    [Documentation]    Atualiza completamente um usuário e valida o status code
-    ${response}=    PUT On Session    api    url=${USERS_ENDPOINT}/${user_id}    json=${payload}
-    Log    ${response.json()}
-    Validar Status Code    ${response}    ${expected_status}
-    Should Contain    ${response.json()}    updatedAt
 
-Atualizar Usuário Com PATCH
-    [Arguments]    ${user_id}    ${payload}    ${expected_status}
-    [Documentation]    Atualiza parcialmente um usuário e valida o status code
-    ${response}=    PATCH On Session    api    url=${USERS_ENDPOINT}/${user_id}    json=${payload}
-    Log    ${response.json()}
-    Validar Status Code    ${response}    ${expected_status}
-    Should Contain    ${response.json()}    updatedAt
+Get Usuario Por Id 404
+    [Arguments]    ${id}
+    &{payload}    Create Dictionary    id=${id}    email=string    first_name=string    last_name=string    avatar=string 
+    ${response}=    Get Request    login_session    /api/users/${id}    params=${payload}
+    Log    Response: ${response.json()}
+    Log    Status Code: ${response.status_code}
+    Log    Headers: ${response.headers}
+    Log    Content-Type: ${response.headers['Content-Type']}
+    Should Be Equal As Integers    ${response.status_code}    404
 
-Deletar Usuário
-    [Arguments]    ${user_id}    ${expected_status}
-    [Documentation]    Deleta um usuário pelo ID e valida o status code
-    ${response}=    DELETE On Session    api    url=${USERS_ENDPOINT}/${user_id}
-    Log    ${response.status_code}
-    Validar Status Code    ${response}    ${expected_status}
+PUT Atualizar Usuario Por Id
+    [Arguments]    ${id}
+    &{payload}    Create Dictionary    id=${id}    email=string    first_name=string    last_name=string    avatar=string 
+    ${response}=    Put Request    login_session    /api/users/${id}    json=${payload}
+    Log    Response: ${response.json()}
+    Log    Status Code: ${response.status_code}
+    Log    Headers: ${response.headers}
+    Log    Content-Type: ${response.headers['Content-Type']}
+    Should Be Equal As Integers    ${response.status_code}    200
 
-Validar Status Code
-    [Arguments]    ${response}    ${expected_status}
-    [Documentation]    Valida se o status code retornado é o esperado
-    Should Be Equal As Numbers    ${response.status_code}    ${expected_status}
+DELETE Deletar Usuario Por Id
+    [Arguments]    ${id}
+    ${response}=    Delete Request    login_session    /api/users/${id}
+    Log    Status Code: ${response.status_code}
+    Log    Headers: ${response.headers}
+    ${content_length}=    Get From Dictionary    ${response.headers}    Content-Length    NOT PRESENT
+    Log    Content-Length: ${content_length}
+    Should Be Equal As Integers    ${response.status_code}    204
+
